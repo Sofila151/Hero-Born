@@ -1425,7 +1425,7 @@ GameObject:
   - component: {fileID: 1393465543}
   - component: {fileID: 1393465542}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: Game Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1443,6 +1443,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e28dea922f99f4d6f9950da792cba848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showWinScreen: 0
+  labeltext: Collect all 4 items and win your freedom!
+  maxItems: 1
 --- !u!4 &1393465543
 Transform:
   m_ObjectHideFlags: 0
@@ -6870,6 +6873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b3b07a811e624f48a39dec541a0ebc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
 --- !u!1001 &8185896469355076895
 PrefabInstance:
   m_ObjectHideFlags: 0
