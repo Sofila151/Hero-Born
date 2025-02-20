@@ -3,8 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameBehavior : MonoBehaviour
+using CustomExtensions;
+
+public class GameBehavior : MonoBehaviour, IManager
 {
+    private string _state;
+    public string State
+    {
+        get { return _state; }
+        set { _state = value; }
+    }
     public bool showWinScreen = false;
     public bool showLossScreen = false;
 
@@ -61,20 +69,37 @@ public class GameBehavior : MonoBehaviour
         Time.timeScale = 1.0f;
     }
 
+    void Start()
+    {
+        Initialize();
+    }
+    public void Initialize()
+    {
+        _state = "Manager initialized..";
+        _state.FancyDebug();
+        Debug.Log(_state);
+    }
+
     void OnGUI()
     {
         GUI.Box(new Rect(20, 20, 150, 25), "Player Health: " + _playerHP);
         GUI.Box(new Rect(20, 50, 150, 25), "Items Collected: " + _itemsCollected);
         GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height - 50, 300, 50), labeltext);
 
-        if (showWinScreen && GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "You Won!"))
+        if (showWinScreen)
         {
-            RestartLevel();
+            if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "You Won!"))
+        {
+            Utilities.RestartLevel(0);
+        }
         }
 
-        if (showLossScreen && GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "You lose..."))
+        if (showLossScreen)
         {
-            RestartLevel();
+            if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "You lose..."))
+        {
+            Utilities.RestartLevel();
+        }
         }
     }
 }
