@@ -18,6 +18,8 @@ public class PlayerBehavior : MonoBehaviour
     private Rigidbody _rb;
     private CapsuleCollider _col;
     private GameBehavior _gameManager;
+    public delegate void JumpingEvent();
+    public event JumpingEvent playerJump;
 
     void Start()
     {
@@ -37,6 +39,7 @@ public class PlayerBehavior : MonoBehaviour
         if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
         {
             _rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
+            playerJump();
         }
 
         Vector3 rotation = Vector3.up * hInput;
